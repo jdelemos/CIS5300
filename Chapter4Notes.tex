@@ -30,17 +30,20 @@ In this chapter, we will discuss the Naives Bayes algorithm and how to apply it 
 This involves determining sentinment, the positive or negative orientation of a remark.
 The most common form of achieving text classification in language processing is through \textbf{supervised machine learning}.
 This is where we have a data set, each bit associated with some correct output. The goal of the algorithm is to learn to map
-the new observation to the correct output.
+the new observation to the correct output. \newline
+\\ \textit{Example: Imagine you're a mailroom assistant. Every day, you receive letters with no return address, and your job is to guess whether each letter is a love letter (positive) or a complaint letter (negative) — just by scanning the words it uses.}
+
 \begin{itemize}
     \item Y = ($y_1$, $y_2$, $y_3$, $y_3$, etc - Set of correct Inputs )
     \item $y \in $ Y
     \item c = \textit{Class}
     \item d = \textit{Document} - Think of this as our x input
 \end{itemize}
+\subsection{Understanding the Problem}
+We call Naive Bayes a generative model because we can infer an answer based off the given information.
+\\These are the variables we will use: we can represent a document \textit{d} as a set of features $f_1, f_2,.... f_n$:
 We represent a document as if it were a bag of words. We only keep tracks of the frequency of the words.
-\\Naives Bayes is a probablistic classifier, meaning that for a document \textit{d}, out of all classes
-$c \in $ C.
-\\
+\\Instead of x, we will use a document \textit{d}. Instead of an output f(x), we will use c (for “class”).
 In Eq.~4.1, we use the \emph{hat} notation $\hat{c}$ to represent our estimate of the correct class.
 We also use the $\arg\max$ operator to mean an operation that selects the argument (in this case, the class $c$)
 that maximizes a function (in this case, the probability $P(c \mid d)$):
@@ -61,8 +64,7 @@ Then we substitute using bayes rule.
     \hat{c} = \arg\max_{c \in C} \frac{P(d \mid c) \cdot P(c)}{P(d)}
 \]
 
-We call Naive Bayes a generative model because we can infer an answer based off the given information.
-\\Without a loss of generality, we can represent a document \textit{d} as a set of features $f_1, f_2,.... f_n$:
+
 
 \[
     \hat{c} = \arg\max_{c \in C} \frac{P(f_1, f_2,....f_n\mid c) \cdot P(c)}{P(d)}
