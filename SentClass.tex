@@ -1,0 +1,112 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{courier}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{float}
+
+\title{Penn CIS5300 - Natural Language Processing - Sentiment Classification}
+\title{Thumbs up? Sentiment Classification using Machine Learning
+Techniques - Bo Pang, Lillian Lee, Shivakumar Vaithyanathan}
+\author{Notes: PENN CIS5300 Jonathon Delemos - Dr. Chris Callison Burch}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\subsection{Abstract}
+
+Throughout this paper we will investigate the Naive Bayes, maximum entropy, and support vector machine learning methods. We will discover that
+the factors that exist in sentiment classifcation make the problem quite challenging.
+
+\subsection{Formulas - Naive Bayes}
+
+This is the Naive Bayes formula for calculating the probability that document $d$ belongs to class $c$:
+
+\[
+    P_{\text{NB}}(c \mid d) := \frac{P(c) \cdot \left( \prod_{i=1}^{m} P(f_i \mid c)^{n_i(d)} \right)}{P(d)}
+\]
+
+Let’s define the components:
+
+\begin{itemize}
+    \item $P(c)$: Prior probability of class $c$
+    \item $f_i$: The $i^{\text{th}}$ word (feature) in the vocabulary
+    \item $n_i(d)$: Number of times feature $f_i$ appears in document $d$
+    \item $P(f_i \mid c)$: Probability of word $f_i$ given class $c$
+    \item $\prod_{i=1}^{m}$: Product over all $m$ words in the vocabulary
+    \item $P(d)$: Probability of document $d$ (used to normalize; often ignored in $\arg\max$)
+\end{itemize}
+
+This is a formula we are quite familiar with. We are searching for the probability of class given document. This is the positive or negative
+sentiment given a particular document. We take the probability of the word raised to the number of times it appears in the document. Then we take that product and
+reproduce it against every word in the document, also multiplying against the probability of the class and divided by the probability of the document.
+
+\subsection{Maximum Entropy}
+
+Maximum entropy classification (MaxEnt, or ME,
+for short) is an alternative technique which has
+proven effective in a number of natural lan-
+guage processing applications (Berger et al., 1996).
+Nigam et al. (1999) show that it sometimes, but not
+always, outperforms Naive Bayes at standard text
+classification. It excels by making less assumptions about the data. Its estimate of P (c | d) takes the following exponential form:
+
+\[
+    P_{\text{ME}}(c \mid d) := \frac{1}{Z(d)}exp(\sum_{i} \lambda_{i,c} F_{i,c}(d,c))
+\]
+
+Let's define the terms.
+
+\begin{itemize}
+    \item $P_{\text{ME}}(c \mid d)$: Probability that document $d$ belongs to class $c$ under the Maximum Entropy model
+    \item $Z(d)$: Partition function or normalization constant, ensures probabilities across all classes sum to 1
+    \item $\exp$: Exponential function $e^x$
+    \item $\sum_i$: Sum over all features indexed by $i$
+    \item $\lambda_{i,c}$: Weight parameter associated with feature $i$ and class $c$, learned during training
+    \item $F_{i,c}(d, c)$: Feature function indicating the presence, count, or strength of feature $i$ in document $d$ for class $c$
+\end{itemize}
+
+\subsection{Support Vector Machines}
+
+Support vector machines have been shown to be highly effective.  They are large-margin, rather than proba-
+bilistic, classifiers, in contrast to Naive Bayes and
+MaxEnt. In the two-category case, the basic idea be-
+hind the training procedure is to find a hyperplane,
+represented by vector ~w, that not only separates
+the document vectors in one class from those in the
+other, but for which the separation, or margin, is as
+large as possible. This search corresponds to a con-
+strained optimization problem; letting $c_j \in {1,-1}$
+(corresponding to positive and negative) be the correct class of document dj , the solution can be written
+as
+
+\[
+    \vec{w} := \sum_j \alpha_j c_j \vec{d}_j, \quad \alpha_j \geq 0
+\]
+
+Let's define the terms.
+
+\begin{itemize}
+    \item{$\alpha_{j}$ - are learned coefficients}
+    \item $c_j$ - class model for training model (j+1)
+    \item $d_j$ - feature training model for document \textit{j}
+\end{itemize}
+
+\textbf{Big Idea}: This is how the weight vector $\vec{w}$ is built.
+
+
+\subsection{Comparison of Formulas}
+
+\textbf{Naive Bayes}
+
+
+\end{document}
