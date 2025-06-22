@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{courier}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{float}
+
+\title{CIS5300 - Speech and Language Processing - Chapter 2 Notes}
+\author{Jonathon Delemos - Chris Callison Burch}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\subsection{Abstract - Regular Expressions, Tokenization, Edit Distance}
+
+\textbf{Text Normalization} is a process that involves using regular expressions to convert words to a more convenient, standard form.
+This requires \textbf{Tokenization}, which is a fancy way to say categorizing things. Another part of text normalization is
+\textbf{lemmatization}, the task of determining whether two words have the same root, despite their differences. Think of a conjugation
+machine. Finally, we will focus on \textbf{edit distance}. That is to say what would it take to translate one string into another?
+
+\subsection{ 2.1 - Regular Expressions}
+
+The most common regular expressions is \textbf{concatenation}. That means using the regular expression
+to find a group of chosen letters. We can also use \textbf{disjunction} to match case sensitve words. Another technique is \textbf{ranges}. This means finding any range of number.
+
+\begin{itemize}
+    \item \textbf{Literal Match (Concatenation)}:
+          \begin{itemize}
+              \item \texttt{/woodchuck/} matches “woodchuck”
+              \item \texttt{/Buttercup/} matches strings containing “Buttercup”
+          \end{itemize}
+
+    \item \textbf{Character Classes (Disjunction)}:
+          \begin{itemize}
+              \item \texttt{/[wW]oodchuck/} matches “woodchuck” or “Woodchuck”
+              \item \texttt{/[abc]/} matches “a”, “b”, or “c”
+              \item \texttt{/[0-9]/} matches any digit
+              \item \texttt{/[a-z]/}, \texttt{/[A-Z]/} match lowercase or uppercase letters
+              \item \texttt{/[b-g]/} matches any character from b to g
+          \end{itemize}
+
+    \item \textbf{Negated Character Classes}:
+          \begin{itemize}
+              \item \texttt{/\^a/} matches any character except “a”
+          \end{itemize}
+
+    \item \textbf{Optional Characters (?)}:
+          \begin{itemize}
+              \item ? means the preceding character or nothing
+              \item \texttt{/woodchucks?/} matches “woodchuck” or “woodchucks”
+              \item \texttt{/colou?r/} matches “color” or “colour”
+          \end{itemize}
+
+    \item \textbf{Repetition (Kleene Star and Plus)}:
+          \begin{itemize}
+              \item \texttt{/a*/} matches zero or more “a” characters
+              \item \texttt{/aa*/} matches one or more “a” characters
+              \item \texttt{/[ab]*/} matches any string of a’s and b’s (including empty)
+              \item \texttt{/[0-9]+/} matches one or more digits (shorthand for integer)
+          \end{itemize}
+
+    \item \textbf{Wildcard (.)}:
+          \begin{itemize}
+              \item \texttt{/beg.n/} matches “begin”, “beg’n”, “begun”, etc.
+          \end{itemize}
+
+    \item \textbf{Anchors and Boundaries}:
+          \begin{itemize}
+              \item \texttt{\textbackslash{}B} matches non-word boundary
+          \end{itemize}
+    \item \textbf{Grouping and Precedence}
+          \begin{itemize}
+              \item \texttt{/cat|dog/} matches cat \textit{or} dog
+          \end{itemize}
+    \item \textbf{Special Characters}
+          \begin{itemize}
+              \item \texttt{*} — Zero or more occurrences of the preceding expression
+              \item \texttt{+} — One or more occurrences of the preceding expression
+              \item \texttt{?} — Zero or one occurrence (optional) of the preceding expression
+              \item \texttt{\{n\}} — Exactly \texttt{n} occurrences
+              \item \texttt{\{n,m\}} — Between \texttt{n} and \texttt{m} occurrences (inclusive)
+              \item \texttt{\{n,\}} — At least \texttt{n} occurrences
+              \item \texttt{\{,m\}} — Up to \texttt{m} occurrences
+          \end{itemize}
+\end{itemize}
+
+
+
+
+
+
+So /a\.{24}z/ will match
+a followed by 24 dots followed by z (but not a followed by 23 or 25 dots followed
+by a z).
+
+\end{document}
+
