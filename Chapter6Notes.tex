@@ -127,31 +127,63 @@ This is a technique to determine the association between two words given proximi
     PMI(w_1,w_2) = log_2(\frac{0.02}{0.10 X 0.05}) = log_2(\frac{0.02}{0.005}) = log_2(4) = 2
 \]
 
+These models are often used for document functions like deciding if the two documents are similar. We represent a document by taking the vectors of all the words in the document,
+computing the cetroid of these vectors. \newline
+Centroid:
+
+\[
+    d = \frac{w_1 + w_2....}{k}
+\]
+
+Given k word vectors $w_1, w_2$ ... \newline
+
+Given this information, we can compute document vectors! It's also useful for document similarity, plaigiarism detection, new recommender systems, music recommendation, etc.
+
+\subsection{6.8 - Word2vec}
+
+We now introduce embeddings: a short dense vector that contains 50-1000 elements. Believe it or not, these vectors are actually
+more effective than the vectors with $\mid V \mid$ elements.\newline
+In this chpater we will introduce \textbf{skip-gram with negative sampling} which is one of the two algorithms that employee a software package called \textbf{word2vec}.
+This system learns contant embeddings which means the vector \textit{doesn't} change with context. I.e. cold and cold mean the same thing regardless of context.
+n summary, skip-gram trains a probabilistic classifier that, given a test target word
+w and its context window of L words c1:L, assigns a probability based on how similar
+this context window is to the target word.
+
+The basis for skip-gram is:
+
+\begin{itemize}
+    \item Treat the target word and a nieghboring word as positive examples
+    \item Randomly sample other words to get negative samples
+    \item Use Logistic Regression to train a classifer to distinguish between the two classes
+    \item Use the learned weights as embeddings
+\end{itemize}
+
+Using logisitc regression, the model learns two separate embeddings for each word \textit{i}, the target embedding, and the context embedding.
+
+\subsection{Analogy/Relational Similarility}
+
+By expressing these combinations of words as vectors, we can then predict the next word by searching for other words that might be in the same region or extend out from the same vector.
+The most common metric for testing their similarity is to use similarity word scores. For example \textit{plane and car} had an average score of 5.77.
 
 \subsection{Summary}
+\begin{itemize}
+    \item In vector semantics, a word is modeled as a vector—a point in high-dimensional space, also called an embedding.
+    \item In this chapter we focus on static embeddings, where each word is mapped to a fixed embedding. Vector semantic models fall into two classes: sparse and dense.
+    \item In sparse models each dimension corresponds to a word in the vocabulary V and cells are functions of co-occurrence counts.
+    \item The term-document matrix has a row for each word (term) in the vocabulary and a column for each document.
+    \item The word-context or term-term matrix has a row for each (target) word in the vocabulary and a column for each context term in the vocabulary.
+    \item Two sparse weightings are common: the tf-idf weighting which weights each cell by its term frequency and inverse document frequency, and PPMI (point- wise positive mutual information), which is most common for word-context matrices. Dense vector models have dimensionality 50–1000.
+    \item Word2vec algorithms like skip-gram are a popular way to compute dense embeddings. Skip gram trains a logistic regression classifier to compute the probability that two words are ‘likely to occur nearby in text’.
+    \item This probability is computed from the dot product between the embeddings for the two words.
+    \item Skip-gram uses stochastic gradient descent to train the classifier, by learning embeddings that have a high dot product with embeddings of words that occur nearby and a low dot product with noise words.
+    \item Other important embedding algorithms include GloVe, a method based on ratios of word co-occurrence probabilities.
+    \item Whether using sparse or dense vectors, word and document similarities are
+          computed by some function of the dot product between vectors.
+    \item The cosine
+          of two vectors a normalized dot product is the most popular such metric.
 
-In vector semantics, a word is modeled as a vector—a point in high-dimensional
-space, also called an embedding. In this chapter we focus on static embeddings, where each word is mapped to a fixed embedding.
-Vector semantic models fall into two classes: sparse and dense. In sparse
-models each dimension corresponds to a word in the vocabulary V and cells
-are functions of co-occurrence counts. The term-document matrix has a
-row for each word (term) in the vocabulary and a column for each document.
-The word-context or term-term matrix has a row for each (target) word in
-the vocabulary and a column for each context term in the vocabulary. Two
-sparse weightings are common: the tf-idf weighting which weights each cell
-by its term frequency and inverse document frequency, and PPMI (point-
-wise positive mutual information), which is most common for word-context
-matrices.Dense vector models have dimensionality 50–1000. Word2vec algorithms
-like skip-gram are a popular way to compute dense embeddings. Skip gram
-trains a logistic regression classifier to compute the probability that two words
-are ‘likely to occur nearby in text’. This probability is computed from the dot
-product between the embeddings for the two words.
-• Skip-gram uses stochastic gradient descent to train the classifier, by learning
-embeddings that have a high dot product with embeddings of words that occur
-nearby and a low dot product with noise words. Other important embedding algorithms include GloVe, a method based on
-ratios of word co-occurrence probabilities.Whether using sparse or dense vectors, word and document similarities are
-computed by some function of the dot product between vectors. The cosine
-of two vectors a normalized dot product is the most popular such metric.
+\end{itemize}
+
 
 \subsection{Questions}
 
