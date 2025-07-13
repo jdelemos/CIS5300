@@ -1,0 +1,159 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{courier}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{float}
+
+\title{CIS5300 - Speech and Language Processing - Chapter 6 Notes}
+\author{Jonathon Delemos - Chris Callison Burch}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\subsection{Abstract - Vector Semantics and Embeddings}
+
+In this chapter, we will introduce \textbf{vector semantics}, which instantiates this linguistic hypothesis by learning representations of the meaning
+of the words, called \textbf{embeddings}, directly from their distribution in texts. These representations are the first examples of
+\textbf{representation learning}, automatically learning useful representations of the input text.
+
+\subsection{6.1 - Lexical Semnatics}
+
+Let's start by looking at how one word might be defined in a dictionary. \textit{Mouse} might be defined as:
+
+\begin{itemize}
+    \item 1. Any of numerous small rodents
+    \item 2. a hand-operated device that controls a cursor
+\end{itemize}
+
+Here, the form mouse is the \textbf{lemma}, also called the \textbf{citation form}. Similarly, sing is the lemma for sing, sang, and sung.
+The different definitions for each word can be called \textbf{word sense disambiguation}. Similarity is
+very useful in large semantic tasks. For example, vanish and disappear might have s similarity score of 9.8/10.
+\textbf{Semantic fields} are a common way to relate words to each other: \textit{CPU, disk, memory, I/O }
+
+\subsection{6.2 - Vector Semantics}
+
+\textbf{Vector Semantics} is the standard wy to represent word meaning in NLP, helping us model many of the aspects of word meaning. For example, we might
+measure the affective meaning of a word by using \textit{three metrics.} This would now be a vector with three variables.
+The big idea behind vecor semantics is to represent a word as a point in a multidimensional space. We can infer some words just by looking at the words that might be
+adjacent.
+
+\textbf{Information Retrieval} is the task of finding document \textit{d} and from the \textit{D} documents in some colletion that best matches
+the query \textit{q}. For IR, we'll therefore also represent a query by a vector, also of length $\mid V \mid $. \newline
+
+Instead of looking at the document as a vector, we can also look at the word. Each word might be a vector that contains the number of times it was used across a variety
+of documents. If we take every occurance of each word, and count the context words around it, we get a word-word co-occurance matrix. Since \textit{cherry} and \textit{strawberry}
+were both used a silimar number of times around sugar and pie, we can infer they have similar meanings in that specific context. Note that $\mid V \mid $ is generally the size of the vocabulary.
+
+\subsection{6.4 - Cosine for Measuring Similarity}
+
+To find the difference between the two vectors, we can use the dot product.
+
+\[
+    v \cdot w = \sum_{i=1}^{N} v_i\cdot w_i = v_1 w_1 + v_2 w_2....
+\]
+
+\[
+    cosine(\theta) = \frac{a \cdot b}{\mid a \mid  \mid b \mid }
+\]
+
+This will give you cosine of theta. For some odd reason, the book stops short of suggesting you take the arc cosine. I might find this more valuable because
+then you have access to the plain angle. If we want to know what kinds of contexts are shared
+by cherry and strawberry but not by digital and information, we’re not going to get
+good discrimination from words like the, it, or they, which occur frequently with
+all sorts of words and aren’t informative about any particular word. \newline
+It's a bit of a paradox-words that occur too frequently have less value, but words that don't appear enough can't
+be used reliably.
+
+\subsection{6.5 - TF-IDF: Weighing terms in the vector}
+
+\textbf{TF-IDF} weighting is the product of two terms-each term is capturing one of two intuitions: The first is the \textbf{term frequency}:
+
+\[
+    tf_{t,d} = count(t,d)
+\]
+
+Here it's common to use the log 10 frequency. So:
+
+
+\[
+    1 + log_{10}(10) = 2,100
+\]
+
+The second factor is meant to weigh which documents the term was used in. Terms that are limited to a few documents are useful for
+discriminating those documents form the rest of the colleciton. I.E, they have more weight in those documents. If they are used frequently across
+a variety of documents, they carry less weight.
+
+\subsection{TF-IDF Example: Very Helpful}
+
+\textit{THE WORD ROMEO APPEARS IN ONE SHAKESPEARE DOCUMENT} \newline
+
+Consider in the collection of Shakespeare’s 37 plays the two words Romeo and action. The words
+have identical collection frequencies (they both occur 113 times in all the plays) but
+very different document frequencies, since Romeo only occurs in a single play. If
+our goal is to find documents about the romantic tribulations of Romeo, the word
+Romeo should be highly weighted, but not action. \newline
+
+If we want to analyze \textit{Romeo}'s feelings, we would heavily weight the word Romeo, as it only appears in one document.
+
+\subsection{6.5 - IDF Explained}
+
+If we want to find discriminating words, we call the \textbf{inverse document frequency} or \textit{idf}.
+
+\[
+    idf_t = \log_{10}(\frac{N}{df_t})
+\]
+
+\[
+    w_{t,d} = tf_{t,d} X idf_{t}
+\]
+
+\subsection{6.6 - Pointwise Mutual Information}
+
+Another way to measure the relative importance of a word is \textbf{positive pointwise mutual information}. This is a technique that involves
+determining the association between two words by measuring their relative position in previous documents.
+This is a technique to determine the association between two words given proximity in the document collection.
+
+\[
+    PMI(w_1,w_2) = log_2(\frac{0.02}{0.10 X 0.05}) = log_2(\frac{0.02}{0.005}) = log_2(4) = 2
+\]
+
+
+\subsection{Summary}
+
+In vector semantics, a word is modeled as a vector—a point in high-dimensional
+space, also called an embedding. In this chapter we focus on static embeddings, where each word is mapped to a fixed embedding.
+Vector semantic models fall into two classes: sparse and dense. In sparse
+models each dimension corresponds to a word in the vocabulary V and cells
+are functions of co-occurrence counts. The term-document matrix has a
+row for each word (term) in the vocabulary and a column for each document.
+The word-context or term-term matrix has a row for each (target) word in
+the vocabulary and a column for each context term in the vocabulary. Two
+sparse weightings are common: the tf-idf weighting which weights each cell
+by its term frequency and inverse document frequency, and PPMI (point-
+wise positive mutual information), which is most common for word-context
+matrices.Dense vector models have dimensionality 50–1000. Word2vec algorithms
+like skip-gram are a popular way to compute dense embeddings. Skip gram
+trains a logistic regression classifier to compute the probability that two words
+are ‘likely to occur nearby in text’. This probability is computed from the dot
+product between the embeddings for the two words.
+• Skip-gram uses stochastic gradient descent to train the classifier, by learning
+embeddings that have a high dot product with embeddings of words that occur
+nearby and a low dot product with noise words. Other important embedding algorithms include GloVe, a method based on
+ratios of word co-occurrence probabilities.Whether using sparse or dense vectors, word and document similarities are
+computed by some function of the dot product between vectors. The cosine
+of two vectors a normalized dot product is the most popular such metric.
+
+\subsection{Questions}
+
+
+\end{document}
