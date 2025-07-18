@@ -1,0 +1,163 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{courier}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{CIS5300 - Speech and Language Processing - Neural Networks - Chapter 7 Notes}
+\author{Jonathon Delemos - Chris Callison Burch}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\subsection{Abstract}
+
+Neural networks are a fundamental computational tool for language processing, and a very old one. They are called neural because their origins lie in the
+McCulloch-Pitts neuron (McCulloch and Pitts, 1943), a simplified model of the
+biological neuron as a kind of computing element that could be described in terms
+of propositional logic. But the modern use in language processing no longer draws
+on these early biological inspirations.
+Instead, a modern neural network is a network of small computing units, each
+of which takes a vector of input values and produces a single output value. In this
+chapter we introduce the neural net applied to classification
+
+\subsection{7.1 - Units}
+
+The building block of a neural network is a single computational unit. At it's heart, a neural unit is taking a weighted sum of it's inputs, ith one additional term in the sum called a bias term. \newline
+A lot of the information here is covered in Chapter 4. By \textbf{nonlinear}, we mean the function cannot be expressed as a straight light in the input space.
+With nonlinear activation functions, you can bend and curve the decision boundary, cpature complex patterns like XOR, and represent images, language, and time-series data in meaningful ways.
+
+Review Sigmoid:
+
+\[
+    \sigma (z) = \frac{1}{1+e^{-z}}
+\]
+
+In practice, the sigmoid function is not commonly used as an activation function. A function that is very similar but almost always better is tanh function, the tanh functionis a variant that ranges from -1 to +1.
+TanH is a tangent hyperbolic function.n
+
+\[
+    y = tanh(z) = \frac{e^z-e^{z}}{e^z+ e^{-z}}
+\]
+
+
+The simplest activation function, and perhaps the most commonly used, is the rectified linear unit, also called the ReLU.
+It's just the same as z whe z is positive, and 0 otherwise.
+
+\[
+    y = ReLU(z) = max(z,0)
+\]
+
+Activation functions compute nonlinear outputs from each neuron. These outputs form activation vectors that are passed forward through the network. During training, the network adjusts its weights by backpropagating errors, using the activation function derivatives to compute gradients.
+
+\textbf{Activation Units}
+
+Think of these a little bit like decision gates. If the score is too low, the gate shuts. If the score is high enough, the gate opens and the package goes
+to the next part of the factory.
+
+\begin{itemize}
+    \item ReLU: If positive, do this.
+    \item Sigmoid: If the score is high, open it fully, if low, keep it shut.
+    \item Tanh: Let some positive or negative flow through - cap the extremes.
+\end{itemize}
+
+
+\subsection{7.2 - The XOR Problem}
+
+Using a single-layer neural network as our system for determining 1 or 0, we cannot compute the correct results for
+XOR as XOR isn't linearly seperable. The solution is to use a multi-layer neural network, one with a hiddden layer that combines multiple linear and nonlinear transformations.
+
+This is a system that allows for intermediate decisions. \newline
+
+
+\section*{Logic-Based XOR Computation}
+
+The XOR function can be expressed using basic logic gates as:
+
+\[
+    \text{XOR}(x_1, x_2) = (x_1 \land \neg x_2) \lor (\neg x_1 \land x_2)
+\]
+
+\subsection*{Two-Layer Network}
+
+\textbf{Layer 1:} Compute the following intermediate values:
+\[
+    \begin{aligned}
+        h_1 & = x_1 \land \neg x_2 \\
+        h_2 & = \neg x_1 \land x_2
+    \end{aligned}
+\]
+
+\textbf{Layer 2:} Final output using OR:
+\[
+    y = h_1 \lor h_2
+\]
+
+\subsection*{Truth Table}
+
+\begin{center}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+        \hline
+        $x_1$ & $x_2$ & $\neg x_1$ & $\neg x_2$ & $h_1 = x_1 \land \neg x_2$ & $h_2 = \neg x_1 \land x_2$ & $y = h_1 \lor h_2$ \\
+        \hline
+        0     & 0     & 1          & 1          & 0                          & 0                          & 0                  \\
+        0     & 1     & 1          & 0          & 0                          & 1                          & 1                  \\
+        1     & 0     & 0          & 1          & 1                          & 0                          & 1                  \\
+        1     & 1     & 0          & 0          & 0                          & 0                          & 0                  \\
+        \hline
+    \end{tabular}
+\end{center}
+
+In summary, we say that \textit{xor} is not a linearly seperable function.
+
+\subsection{7.3 - Feedforward Neural Networks}
+
+A feedforward network is a multilayer network in wich the units are connected with no cycles; the outputs from units in each layer are passed to units in the next higher layer,
+and no inputs are passed back to lower layers.
+\begin{itemize}
+    \item input unit
+    \item hidden unit
+    \item output unit
+\end{itemize}
+
+These are the foundations of machine learning. We use input layers, hidden layers, and output layers to determine the final result of our decision.
+\newline
+The output of the hidden layer, the vector \textbf{h} is:
+\[
+    h = \sigma (W\cdot x + b)
+\]
+
+Like the hidden layer, the output layer has a weight matrix \textbf{U}. The weight matrix is multiplied by the input parameter \textbf{hidden layer \textit{h}}.
+
+\[
+    z = \textbf{Uh}
+\]
+
+Here are the final equations for a feedforward network with a single hidden layer, which
+takes input vector \textbf{x}, outputs a probability distribution \textbf{y}, and is parameterized by weights \textbf{W}
+and \textbf{U} and a bias vector \textbf{b}.
+
+\[
+    h = \sigma (W\cdot x + b)
+    z = \textbf{Uh}
+    y = softmax (z)
+\]
+
+
+\end{document}
