@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{courier}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{float}
+
+\title{CIS5300 - Speech and Language Processing - Homework 1 Notes}
+\author{Jonathon Delemos - Mark Yakstar}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\subsection{Regular Expressions (RE) Tools}
+
+The assignment highlights three core python regex functions: 
+\begin{itemize}
+    \item re.search() \textit{Finds the first substring with the given pattern}
+    \item re.findall() \textit{Extracts all non-overlapping matches.}
+    \item re.sub() \textit{Takes one string and replaces with the desired one.}
+\end{itemize}
+
+Regular expressions are a powerful tool that should be used to transform text, locate patterns, extract structured information.
+
+\subsection{Data Structures}
+
+This assignment relied heavily on python dictionaries and lists to manipulate data at various levels. 
+\newline 
+\textbf{Dictionaries}
+\begin{itemize}
+    \item word freqs = {} - keys are immutable strings, values are integers
+    \item loop through requires items(), \textit{for word, count in word freq.items():} 
+    \item return {word: count for word, count in freq.items() if count $>$= threshold} List comprehensions combined with dictionaries were prevalent 
+\end{itemize} 
+\subsection{Questions}
+
+It would be nice to speak with the professor. His lectures aren't posted anywhere..
+
+\end{document}

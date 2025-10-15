@@ -1,0 +1,251 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{courier}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{float}
+
+
+\title{Penn CIS 5300- Speech and Language Processing - Chapter 4 Notes}
+\author{Jonathon Delemos - Dr. Chris Callison Burch}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+This course provides an overview of the field of natural language processing. The goal of
+the field is to build technologies that will allow machines to understand human languages.
+Applications include machine translation, automatic summarization, question answering
+systems, and dialog systems. NLP is used in technologies like Amazon Alexa and Google
+Translate.
+
+\subsection{4.0 - Naive Bayes, Text Classification, and Sentiment}
+\textbf{\textit{Classification}} lies at the heart of all intelligence. Deciding how to interpret symbols, words, and actions is an important step in our decision making process.
+In this chapter, we will discuss the Naives Bayes algorithm and how to apply it to \textit{text categorization}.
+This involves determining sentinment, the positive or negative orientation of a remark.
+The most common form of achieving text classification in language processing is through \textbf{supervised machine learning}.
+This is where we have a data set, each bit associated with some correct output. The goal of the algorithm is to learn to map
+the new observation to the correct output. \newline
+\\ \textit{Example: Imagine you're a mailroom assistant. Every day, you receive letters with no return address, and your job is to guess whether each letter is a love letter (positive) or a complaint letter (negative) — just by scanning the words it uses.}
+
+\begin{itemize}
+    \item Y = ($y_1$, $y_2$, $y_3$, $y_3$, etc - Set of correct Inputs )
+    \item $y \in $ Y - specific input is in set of inputs
+    \item c = \textit{Class} - This is how you might group a word
+    \item d = \textit{Document} - Think of this as our x input
+\end{itemize}
+\subsection{Understanding the Problem}
+We call Naive Bayes a generative model because we can infer an answer based off the given information.
+\\These are the variables we will use: we can represent a document \textit{d} as a set of features $f_1, f_2,.... f_n$:
+We represent a document as if it were a bag of words. We only keep tracks of the frequency of the words.
+\\Instead of x, we will use a document \textit{d}. Instead of an output f(x), we will use c (for “class”).
+Here, we use the \emph{hat} notation $\hat{c}$ to represent our estimate of the correct class.
+We also use the $\arg\max$ operator to mean an operation that selects the argument (in this case, the class $c$)
+that maximizes a function (in this case, the probability $P(c \mid d)$):
+
+\[
+    \hat{c} = \arg\max_{c \in C} P(c \mid d)
+\]
+
+Bayes' Rule:
+
+\[
+    P(x \mid y) = \frac{P(y \mid x) \cdot P(x)}{P(y)}
+\]
+
+Then we substitute using bayes rule.
+
+\[
+    \hat{c} = \arg\max_{c \in C} \frac{P(d \mid c) \cdot P(c)}{P(d)}
+\]
+
+
+
+\[
+    \hat{c} = \arg\max_{c \in C} \frac{P(f_1, f_2,....f_n\mid c) \cdot P(c)}{P(d)}
+\]
+\textbf{Naive Bayes Assumption} : this is conditional independence assumption that the probabilities \textit{P($f_i \mid c$)}
+are independent given the class \textit{c} and hence can be naively multiplied.
+
+\[
+    \hat{c} = \arg\max_{c \in C} P(c) \cdot \prod_{f \in F} P(f \mid c)
+\]
+
+Here, we are multiplying the word values in the document to receive a product vector. This result will allow us to evaluate
+the \textit{sentiment} of the document. Pretty neat stuff.
+
+\subsection{4.2 - Training The Naive Bayes Classifier}
+\[
+    \hat{P}(w_i \mid c) = \frac{count(w_i, c)}{\sum_{v \in W}{count(w,c)}}
+\]
+
+Here, the vocabulary V consists of the union of all the word types in all classes. We are summing the count of
+times this word has been used in a "positive" way across all documents.
+\subsection{Example:}
+Let's say you have 1000 total word tokens in all negative documents. The word "horrible" might appear 20 times in those documents.
+Therefore, we have:
+\[
+    P("horrible" \mid negative) = \frac{20}{1000} = 0.02
+\]
+
+This can be a problem however. If we find a zero as the result, the product of all the word combinations will be zero. A solution offered is to
+use a \textit{Laplace smoothing} and add one to the numerator.
+
+\[
+    \hat{P}(w_i \mid c) = \frac{count(w_i, c) + 1}{\sum_{v \in W}{count(w,c) + \mid V \mid}}
+\]
+
+
+Here is the idea in Python.
+
+\subsection{4.3 - Worked Example}
+
+\begin{lstlisting}[language=Python]
+    def train_naive_bayes(D, C):
+        # D: list of (document, class) pairs
+        # C: list of all possible classes
+        logprior = {}
+        loglikelihood = {}
+        V = set()  # vocabulary
+    
+        Ndoc = len(D)
+    
+        for c in C:
+            docs_in_class = [d for (d, label) in D if label == c]
+            Nc = len(docs_in_class)
+            logprior[c] = math.log(Nc / Ndoc)
+    
+            # Flatten all words in class c into one big document
+            bigdoc = []
+            for d in docs_in_class:
+                bigdoc.extend(d)
+            
+            # Build vocabulary
+            V.update(bigdoc)
+    
+            word_counts = {}
+            for w in V:
+                word_counts[w] = bigdoc.count(w)
+    
+            total_wc = sum(word_counts[w] + 1 for w in V)  # Laplace smoothing
+    
+            for w in V:
+                loglikelihood[(w, c)] = math.log((word_counts[w] + 1) / total_wc)
+    
+        return logprior, loglikelihood, V
+    \end{lstlisting}
+
+
+
+\section*{Testing Naive Bayes}
+
+\begin{lstlisting}[language=Python]
+    def test_naive_bayes(testdoc, logprior, loglikelihood, C, V):
+        scores = {}
+        for c in C:
+            scores[c] = logprior[c]
+            for word in testdoc:
+                if word in V:
+                    scores[c] += loglikelihood.get((word, c), 0)
+        return max(scores, key=scores.get)
+    \end{lstlisting}
+
+\subsection{4.4 - Optimizations for Sentiment Analysis}
+
+Still, we have optimizations to make. A very simple baseline commonly used in sentiment analysis to deal with
+negation is the following: during text normalization, prepend the prefix NOT to
+every word after a token of logical negation (n’t, not, no, never) until the next punc-
+tuation mark. Thus the phrase
+didn’t like this movie  becomes didn’t NOT like NOT this NOT movie ,
+Newly formed ‘words’ like NOT like, NOT recommend will thus occur more
+often in negative document and act as cues for negative sentiment, while words
+like NOT bored, NOT dismiss will acquire positive associations.
+Furthermore, we can apply a \textbf{binary naive bayes} that will discard the word count used in a document. Instead, it will
+create a binary count of whether a word was used or not. Let's say if a word was used, it receives a 1. Else, a 0. We can add other values to represent
+specific information. For example, 2 might indicates the value appears in multiple documents.
+\subsection{4.5-4.7 - Other Classification Tasks}
+We also need to consider human labels that we are trying to match; i.e. whether or not something is spam. Example: Let's say you are in control of marketing at a company. You might be
+curious as to what people are writing about your product online. You might use \textbf{gold labels} to mark what is considered to be a target response.
+In both cases, we would need a metric to
+help us determine how well our machine is performing. This is called the \textbf{confusion matrix}, which is a stupid name for a punnett square.
+The information gathered from these punnett squares help use determine both \textbf{precision} and \textbf{recall}.
+
+\[
+    Precision = \frac{true positives}{true positives + false positives}
+\]
+\[
+    Recall = \frac{true positives}{true positives + false negatives}
+\]
+
+The single metric that incorporates both precision and recall that we are looking for to determine the effectiveness of our work is the \textbf{F-measure.} It employs
+a weighted harmonic mean to balance the precision and recall. Using the symbol beta as the the modifier to balance both precision and recall, we can find a
+reasonable metric to measure success by.
+\[
+    F = \frac{(\beta^2 +1)\cdot PR}{\beta^2P+R}
+\]
+
+\subsection{4.8-4.9 Test Sets and Cross Validation/Statistical Significance}
+
+\textbf{10 fold cross validation} is where we delegate a percentage of our data to be the test set and train on the rest of it. The hypothesis H0, called the null hypothesis, supposes that $\delta$ (x) is actually nega-null hypothesis
+tive or zero, meaning that A is not better than B. We would like to know if we can
+confidently rule out this hypothesis, and instead support H1, that A is better.
+
+\[
+    \delta(x) = M(A,x) - M(B, x)
+\]
+
+We would like to know if $\delta$ (x) > 0, meaning that our logistic regression classifier
+has a higher F1 than our naive Bayes classifier on x. $\delta$(x) is called the effect size; aeffect size
+bigger $\delta$ means that A seems to be way better than B; a small $\delta$ means A seems to
+be only a little better.
+\newline
+In this statistical analysis, we can consider the \textbf{null hypothesis} to be the case where $\delta$ is negative. The \textbf{p-value} is the threshold for rejecting the null hypothesis.
+I like to think of it as the "probability level" of something occurring. Simplified, how likely the null is to be true. If we find a high P-value, that means we can reasonably accept the null hypothesis. If
+we find a low p-value, something like .001, then it is more likely the null is false. To evaluate all cases for these tests, we can normalize a set of data and calculate if
+99 percent of data is less than the threshold p-value. That's just a simple CDF. The most common form of statistical analysis performed to evaluate the effectiveness of the trials is he \textbf{Paired Bootstrap test.}
+This happens naturally when we are comparing the performance of two systems on the same
+test set. We can pair the performance of system A on an individual observation $x_i$
+with the performance of system B on the same $x_i.$
+\subsection{Pair Bootstrap Explained}
+\textbf{Bootstrapping} refers to repeatedly drawing large numbers of samples with replacement from a set. Later, I will implement a table to show the differences between algorithms \textit{A} and
+\textit{B} on a single data set. To measure exactly how surpising the observed $\delta$(x) is, we can use the following formula.
+
+\[
+    p-value(x) = \frac{1}{b}\sum_{i=1} 1_x (\delta(x^i)-\delta(x) \geq 0)
+\]
+
+
+
+This formula looks a little weird. Notice we have both an equal sign and greater than. We use the notation 1(x) to mean “1 if x is true, and 0 otherwise”.
+
+\subsection{Avoiding Harms in Classifiers}
+
+An example of this sort of detection is \textbf{hate speech detection}. While the goal of the classifier itself is to reduce hate speech, creating
+a probabilistic model to detect hate speech can cause significant harm. Incorrectly generating biases,
+gender sensitivity detection, or racist detection could result in false positives that do more harm than good.
+
+
+
+\subsection{Questions?}
+This chapter is also going really slow.. would be a lot easier with a teacher.
+\\ I think I get it for the most part.
+
+\subsection{Summary}
+In this chapter, we discusssed Naive Bayes theorem for classification and applied it to text categorization and sentiment analysis.
+\begin{itemize}
+    \item Sentiment analysis classifies a text as reflecting the positive or negative orientation that a writer expresses.
+    \item Naive Bayes is a generative model that makes the bag-of-words assumption (positive doesn't matter) and conditional independence assumption.
+    \item Classifiers are based on precision and recall.
+    \item Classifiers are trained using distinct training, included cross-validation in the training set.
+    \item Statistical significance should be used to determine whether we can be confident that one version of a classifier is better than another.
+    \item Engineers should be careful when generating techniques to accomplish objectives. It's very possible to cause more harm than good.
+\end{itemize}
+\end{document}

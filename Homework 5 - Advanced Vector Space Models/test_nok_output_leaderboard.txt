@@ -1,0 +1,89 @@
+terrible.a :: 1 :: fearful dread
+terrible.a :: 2 :: horrendous dreaded fearsome awful atrocious dire frightful frightening abominable unspeakable wicked dreadful horrific
+terrible.a :: 3 :: tremendous
+terrible.a :: 4 :: painful severe
+closely.r :: 1 :: nearly
+closely.r :: 2 :: tight close intimately
+around.r :: 1 :: some round
+around.r :: 2 :: roughly approximately about
+range.n :: 1 :: grasp view internationalism internationality extent
+range.n :: 2 :: spectrum motley assortment smorgasbord palette contrast potpourri chain miscellanea expanse sweep gamut mixture pallet miscellany variety
+range.n :: 3 :: Primus image formation installation facility capability latitude orbit potentiality
+range.n :: 4 :: reach set limit
+range.n :: 5 :: compass band horizon potbelly stove cookstove
+range.n :: 6 :: hearing eyeshot earshot tract ballpark sight
+range.n :: 7 :: ambit ken purview confines scope parcel
+stand.v :: 1 :: bear judge
+stand.v :: 2 :: remain support ramp continue position stay permit allow serve rest service be
+stand.v :: 3 :: countenance brook queue endure digest accept withstand pose resist suffer swallow abide tolerate fend stomach fight oppose defend
+stand.v :: 4 :: lay wash
+stand.v :: 5 :: place let set put pay align
+stand.v :: 6 :: array measure
+strain.n :: 1 :: variety pedigree variant breed flourish stock taxon bloodstock
+strain.n :: 2 :: substance nervousness stress drift sweat tenseness nerves travail tension exertion difficulty air deformation
+strain.n :: 3 :: signature theme leitmotiv leitmotif
+strain.n :: 4 :: overstrain straining
+strain.n :: 5 :: striving attempt try line pains
+strain.n :: 6 :: effort part idea endeavor jihad form
+strain.n :: 7 :: fanfare injury harm purport hurt trauma
+strain.n :: 8 :: cradlesong meaning voice roulade carol music jehad tune tenor glissando song lullaby melody
+worthy.a :: 1 :: suitable desirable
+full.a :: 1 :: broad good replete wide
+full.a :: 2 :: entire total
+heavy.a :: 1 :: hard punishing
+heavy.a :: 2 :: sonorous ponderous leaden lumbering intemperate grievous grave profound weighty
+heavy.a :: 3 :: large lowering great big threatening
+heavy.a :: 4 :: expectant backbreaking toilsome arduous labored grueling laborious
+heavy.a :: 5 :: gravid sullen fleshy
+heavy.a :: 6 :: overweight clayey sound impenetrable dense
+soil.n :: 1 :: uncleanness tilth humus object till
+soil.n :: 2 :: tillage undersoil earth permafrost sward bole badlands loess scablands hardpan
+soil.n :: 3 :: gumbo subsoil bottom overburden caliche marl clay
+soil.n :: 4 :: filth dirtiness
+soil.n :: 5 :: farmland wetland polder territory bottomland greensward coastland rangeland land
+soil.n :: 6 :: grime grunge mold grease stain
+soil.n :: 7 :: mud topsoil sand silt dirt laterite loam turf ground sod
+blow.n :: 1 :: bang happening bash thwack biff blast thump
+blow.n :: 2 :: whip sandblast poke rap bluster puff lick jar stab
+blow.n :: 3 :: reversal blip setback occurrence impact stinger stroke concussion
+blow.n :: 4 :: C cocaine coke cocain
+blow.n :: 5 :: whiplash whiff jolt thrust jounce shock clout bump sideswipe wallop surprise tap whammy
+blow.n :: 6 :: boot belt box clip
+blow.n :: 7 :: snow wind gust buffeting
+blow.n :: 8 :: reverse hammering hammer smacking kick smash whack swat kicking slug smack lash swing slap strike pounding knock
+blow.n :: 9 :: pound knockdown KO insufflation backhander kayo exhalation expiration smacker uppercut knockout counterblow shot punch
+well.r :: 1 :: considerably easily comfortably advantageously substantially
+well.r :: 2 :: intimately
+well.r :: 3 :: good
+way.n :: 1 :: clearance property condition status
+way.n :: 2 :: category tool idiom touch voice drape dint style tendency trend instrument lebensraum
+way.n :: 3 :: lifestyle signature itinerary
+way.n :: 4 :: course lane mode distance aim watercourse road direction part waterway path route portion setup passage agency
+way.n :: 5 :: stairway headroom seats seating room staircase parking wings share
+way.n :: 6 :: pick selection position means access tooth choice wise percentage bearing headway fit
+way.n :: 7 :: escape journey salvation heading journeying warpath
+way.n :: 8 :: expedient fashion approach response form manner
+way.n :: 9 :: artefact hadith effectuation qibla Sunnah Sunna artifact implementation
+true.a :: 1 :: dependable reliable straight
+true.a :: 2 :: rightful lawful unfeigned genuine
+true.a :: 3 :: truthful honest
+acute.a :: 1 :: discriminating sharp keen intense
+acute.a :: 2 :: penetrating penetrative incisive
+acute.a :: 3 :: piercing needlelike knifelike
+right.r :: 1 :: mighty aright mightily powerful
+right.r :: 2 :: decent decently correctly properly justly
+right.r :: 3 :: flop
+cross.a :: 1 :: grumpy grouchy crabby fussy
+cross.a :: 2 :: transverse transversal
+cross.a :: 3 :: crabbed
+clear.a :: 1 :: light open unmortgaged clean
+clear.a :: 2 :: exonerated exculpated vindicated cleared absolved
+clear.a :: 3 :: unclouded percipient
+clear.a :: 4 :: decipherable readable
+new.a :: 1 :: unexampled
+new.a :: 2 :: young fresh raw
+new.a :: 3 :: newfangled New Modern novel
+saint.n :: 1 :: fakir
+saint.n :: 2 :: nonpareil humdinger paragon crackerjack
+saint.n :: 3 :: model ideal
+saint.n :: 4 :: angel deity god Buddha immortal divinity apotheosis

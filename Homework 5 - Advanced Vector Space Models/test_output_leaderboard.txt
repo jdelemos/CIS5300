@@ -1,0 +1,87 @@
+important.a :: 1 :: crucial
+important.a :: 2 :: authoritative
+important.a :: 3 :: significant
+argument.n :: 1 :: clincher value difference determiner con
+argument.n :: 2 :: conflict argy-bargy contestation polemic fight policy sparring disputation dispute firestorm discussion controversy debate
+argument.n :: 3 :: word summary statement line address reference
+argument.n :: 4 :: casuistry arguing contention adducing argumentation case reasoning counterargument
+argument.n :: 5 :: proof evidence
+argument.n :: 6 :: variable parameter
+argument.n :: 7 :: tilt pro
+encounter.v :: 1 :: find see happen cross bump receive
+encounter.v :: 2 :: intersect meet face confront
+encounter.v :: 3 :: be have
+encounter.v :: 4 :: experience chance
+encounter.v :: 5 :: play replay
+activate.v :: 1 :: initiate spark trigger reactivate
+activate.v :: 2 :: actuate aerate
+activate.v :: 3 :: modify change alter
+activate.v :: 4 :: trip
+activate.v :: 5 :: pioneer
+decide.v :: 1 :: mold have get will terminate determine take select choose
+decide.v :: 2 :: seal order try purpose rule measure decree judge
+decide.v :: 3 :: make govern stimulate adjust orient influence orientate regulate induce shape
+decide.v :: 4 :: adjudicate end cause settle resolve regularize
+solid.a :: 1 :: square
+solid.a :: 2 :: hearty whole satisfying
+solid.a :: 3 :: strong substantial
+solid.a :: 4 :: unanimous
+solid.a :: 5 :: firm
+solid.a :: 6 :: upstanding
+difficulty.n :: 1 :: tsuris facer pisser snorter bitch wall sweat killer check
+difficulty.n :: 2 :: wrinkle strain effort hinderance hindrance impediment kink deterrent fix inconvenience trouble stress problem pitfall jam handicap
+difficulty.n :: 3 :: formidability grimness hardness rigorousness toughness ruggedness subtlety severity asperity quality rigor baulk heaviness oppressiveness exertion niceness
+difficulty.n :: 4 :: pinch job condition hardship situation mire quandary status muddle mess predicament travail pickle plight balk hole
+audience.n :: 1 :: gallery grandstand house assemblage
+audience.n :: 2 :: multitude masses people viewers readership mass
+audience.n :: 3 :: interview conference gathering hearing consultation
+audience.n :: 4 :: chance opportunity
+remain.v :: 1 :: bide
+remain.v :: 2 :: stick keep abide stay
+remain.v :: 3 :: persist linger continue rest
+remain.v :: 4 :: stand be
+disc.n :: 1 :: platter dot planchet circle plate puck saucer Frisbee
+disc.n :: 2 :: deadeye round point token
+disc.n :: 3 :: floppy diskette disk diaphragm
+disc.n :: 4 :: audio discus LP record
+lose.v :: 1 :: decline drop
+lose.v :: 2 :: regress retrograde retrogress
+lose.v :: 3 :: forget overlook miss
+lose.v :: 4 :: position place
+lose.v :: 5 :: put lay leave set
+lose.v :: 6 :: pose worsen recede suffer
+lose.v :: 7 :: mislay misplace
+lose.v :: 8 :: whiteout
+add.v :: 1 :: foot stud tot welt
+add.v :: 2 :: impart compound instill form supplement mix combine punctuate fortify
+add.v :: 3 :: numerate enumerate concatenate button append tinsel modify cipher insert cypher string
+add.v :: 4 :: increase tally count sum number state total mark
+add.v :: 5 :: milk calculate qualify alter compute tell change figure reckon say
+add.v :: 6 :: transfuse adjoin inject supply constitute enrich factor make bring bestow contribute include lend
+sort.n :: 1 :: genus operation species
+sort.n :: 2 :: genre stripe flavor style category brand model form soul ilk mortal
+sort.n :: 3 :: individual similarity manner description color sorting variety
+sort.n :: 4 :: make person kind like somebody someone type
+ask.v :: 1 :: inquire query request question call
+ask.v :: 2 :: interrogate solicit govern formulate compel pry
+ask.v :: 3 :: demand quest expect need take
+ask.v :: 4 :: postulate draw claim
+ask.v :: 5 :: require involve intercommunicate cost necessitate bespeak
+ask.v :: 6 :: articulate address consult communicate
+ask.v :: 7 :: phrase exact word
+hot.a :: 1 :: raging
+hot.a :: 2 :: live
+hot.a :: 3 :: spicy
+hot.a :: 4 :: blistering
+arm.n :: 1 :: projection
+arm.n :: 2 :: hatchet blade lance tomahawk knucks bow sling spear sword knife pike
+arm.n :: 3 :: branch brand subdivision division
+arm.n :: 4 :: weapon flamethrower instrument gun missile slasher projectile WMD
+arm.n :: 5 :: shirtsleeve sleeve
+arm.n :: 6 :: knuckles steel shaft limb armrest
+appear.v :: 1 :: pop flash glow glint glisten radiate peep fulminate gleam glitter shine basset
+appear.v :: 2 :: materialize loom reappear happen manifest occur erupt execute emerge
+appear.v :: 3 :: rear beam surface outcrop
+appear.v :: 4 :: be make perform
+appear.v :: 5 :: show feel seem sound do look
+appear.v :: 6 :: cut rise lift jump break
