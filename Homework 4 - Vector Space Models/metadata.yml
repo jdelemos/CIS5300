@@ -1,0 +1,12 @@
+---
+:id: 352466187
+:submitters:
+- :name: Jonathon Delemos
+  :email: jonmichaeldelemos@gmail.com
+:created_at: !ruby/object:ActiveSupport::TimeWithZone
+  utc: 2025-09-29 04:36:16.454983000 Z
+  zone: !ruby/object:ActiveSupport::TimeZone
+    name: America/Los_Angeles
+  time: 2025-09-28 21:36:16.454983000 Z
+:status: processed
+:score: 83.0
